@@ -16,6 +16,13 @@ url = "https://pokeapi.co/api/v2/pokemon?limit=150"
 response = requests.get(url)
 data = response.json()["results"]
 
+# vérifier l'éxecution de lAPI
+if response.status_code == 200:
+    data = response.json()
+    print("Données récupérées !")
+else:
+    print("Erreur :", response.status_code)
+
 rows = []
 for p in data:
   details = requests.get(p["url"]).json()
